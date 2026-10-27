@@ -3,298 +3,313 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Laura Buekers Tattoo · Catalogus</title>
-<meta name="description" content="Laura Buekers Tattoo in Wellen: een catalogus van recent werk. Fine line, zwart-grijs, lettering, microblading en powder brows. 5,0 op Google.">
+<title>Laura Buekers Tattoo · Tattoos en wenkbrauwen in Wellen</title>
+<meta name="description" content="Laura Buekers Tattoo in Wellen: fine line, zwart-grijs en persoonlijke tattoos, microblading en powder brows. 5,0 op Google uit 21 reviews.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="scrollcraft.css">
+<script>try{var m=localStorage.getItem('lb-mode');if(m==='light'||m==='dark')document.documentElement.dataset.mode=m;}catch(e){}</script>
 <style>
-  /* Layout: a numbered catalogue on a dark studio ground. Objects alternate across a 12-column grid,
-     each with the same museum label. A fixed index of numbers on the right is the navigation. */
+  /* Landing page on a dark studio ground: fixed bar, split hero, two services, work grid,
+     about, reviews, steps, closing call to action. Photos start as their stencil and ink in. */
   :root {
     --sc-canvas: #13100e; --sc-surface: #1d1815;
     --sc-ink: #f2eadf; --sc-ink-soft: #b5a898;
     --sc-accent: #d6b36d; --sc-accent-ink: #13100e;
-    --paper: #efe6da;          /* stencil paper */
-    --stencil: #4b3d9e;        /* transfer purple, on paper */
-    --stencil-light: #a99cf0;  /* transfer purple, on the dark ground */
+    --paper: #efe6da;
+    --line: rgb(242 234 223 / 0.14);
     --sc-font-display: "Archivo", system-ui, sans-serif;
     --sc-font-text: "Archivo", system-ui, sans-serif;
-    --sc-font-mono: "Geist Mono", ui-monospace, monospace;
-    --index-w: 0px;
+    --r: 6px;
   }
-  @media (min-width: 900px) { :root { --index-w: 84px; } }
   html { scroll-behavior: auto; }
-  body { margin: 0; font-stretch: 100%; }
+  body { margin: 0; }
   a { color: inherit; }
-  a:focus-visible { outline: 2px solid var(--sc-accent); outline-offset: 4px; }
+  :focus-visible { outline: 2px solid var(--sc-accent); outline-offset: 3px; }
+  h1, h2, h3 { font-family: var(--sc-font-display); font-weight: 500; margin: 0; text-wrap: balance; letter-spacing: -0.03em; }
+  h2 { font-size: var(--sc-t-3xl); line-height: 1; font-stretch: 108%; }
+  .wrap { max-width: 80rem; margin-inline: auto; padding-inline: var(--sc-gutter); }
+  .kicker { font: 500 var(--sc-t-xs)/1.2 var(--sc-font-display); letter-spacing: 0.2em; text-transform: uppercase; color: var(--sc-accent); margin: 0 0 var(--sc-4); }
+  .soft { color: var(--sc-ink-soft); }
 
-  .mono { font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); letter-spacing: 0.06em; text-transform: uppercase; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px; background: var(--sc-accent); color: var(--sc-accent-ink); font: 600 var(--sc-t-sm)/1 var(--sc-font-display); letter-spacing: 0.02em; text-decoration: none; transition: transform 140ms var(--sc-ease-out), background 160ms var(--sc-ease-out); }
+  .btn:active { transform: scale(0.97); }
+  .btn--ghost { background: transparent; color: var(--sc-ink); box-shadow: inset 0 0 0 1px rgb(242 234 223 / 0.35); }
+  @media (hover: hover) and (pointer: fine) { .btn:hover { background: #e4c482; } .btn--ghost:hover { background: rgb(242 234 223 / 0.08); } }
 
-  /* Fixed chrome: wordmark top left, index of numbers on the right */
-  .mark { position: fixed; top: var(--sc-5); left: var(--sc-gutter); z-index: 60; font: 600 var(--sc-t-xs)/1 var(--sc-font-display); font-stretch: 125%; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sc-ink); text-decoration: none; }
-  .index { position: fixed; z-index: 60; }
-  .index ol { list-style: none; margin: 0; padding: 0; }
-  .index a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--sc-ink-soft); font-family: var(--sc-font-mono); font-size: 12px; letter-spacing: 0.04em; transition: color 160ms var(--sc-ease-out); }
-  .index a::before { content: ""; width: 10px; height: 1px; background: currentColor; transform-origin: right; transform: scaleX(0.4); transition: transform 200ms var(--sc-ease-out); }
-  .index a[aria-current="true"] { color: var(--sc-accent); }
-  .index a[aria-current="true"]::before { transform: scaleX(1.6); }
-  @media (hover: hover) and (pointer: fine) { .index a:hover { color: var(--sc-ink); } }
-  @media (min-width: 900px) {
-    .index { top: 0; bottom: 0; right: 0; width: var(--index-w); display: flex; align-items: center; justify-content: center; }
-    .index ol { display: grid; gap: 6px; }
-    .index a { padding: 3px 0; }
-  }
-  @media (max-width: 899px) {
-    .index { left: 0; right: 0; bottom: 0; background: rgb(19 16 14 / 0.94); border-top: 1px solid var(--sc-hairline); padding: 0 max(16px, env(safe-area-inset-left, 0px)) env(safe-area-inset-bottom, 0px); }
-    .index ol { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; padding: 12px 0; }
-    .index a::before { display: none; }
-    .index a { padding: 4px 2px; }
-    body { padding-bottom: 52px; }
-  }
+  /* Bar */
+  .bar { position: fixed; inset: 0 0 auto; z-index: 60; transition: background 200ms var(--sc-ease-out), box-shadow 200ms var(--sc-ease-out); }
+  .bar.is-solid { background: rgb(19 16 14 / 0.92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+  .bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: var(--sc-5); }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 600 var(--sc-t-xs)/1 var(--sc-font-display); font-stretch: 125%; letter-spacing: 0.28em; text-transform: uppercase; }
+  .brand img { width: 40px; height: 40px; border-radius: 50%; background: var(--paper); }
+  .bar nav { display: flex; align-items: center; gap: var(--sc-6); font-size: var(--sc-t-sm); }
+  .bar nav a:not(.btn) { text-decoration: none; color: var(--sc-ink-soft); }
+  @media (hover: hover) { .bar nav a:not(.btn):hover { color: var(--sc-ink); } }
+  .bar .btn { padding: 11px 20px; }
+  @media (max-width: 860px) { .bar nav a:not(.btn) { display: none; } .brand span { display: none; } }
 
-  .cat { padding-right: var(--index-w); }
+  /* Hero */
+  .hero { padding: calc(72px + clamp(2rem, 6vh, 4rem)) 0 clamp(4rem, 10vh, 7rem); }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .hero h1 { font-size: clamp(2.8rem, 6.4vw, 6rem); line-height: 0.96; font-stretch: 110%; }
+  .hero h1 em { font-style: normal; color: var(--sc-accent); }
+  .hero .lede { font-size: var(--sc-t-lg); line-height: 1.45; color: var(--sc-ink-soft); max-width: 34ch; margin: var(--sc-6) 0 var(--sc-7); }
+  .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .proof { display: flex; align-items: center; gap: 12px; margin: var(--sc-7) 0 0; color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+  .proof b { color: var(--sc-ink); font-weight: 600; }
+  .stars { color: var(--sc-accent); letter-spacing: 3px; }
+  .hero .frame { aspect-ratio: 4 / 5; max-height: 78svh; }
+  .hero .frame img { height: 100%; object-fit: cover; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero .frame { aspect-ratio: 1; } }
 
-  /* Object: frame + label */
-  .obj { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(1rem, 2.5vw, 2.5rem); align-items: end; max-width: 92rem; margin-inline: auto; padding: clamp(4rem, 12vh, 9rem) var(--sc-gutter); scroll-margin-top: 0; }
-  .obj .frame { grid-row: 1; }
-  .obj .lbl { grid-row: 1; }
-  .obj--a .frame { grid-column: 1 / span 7; }  .obj--a .lbl { grid-column: 9 / span 4; }
-  .obj--b .frame { grid-column: 6 / span 6; }  .obj--b .lbl { grid-column: 1 / span 4; align-self: start; }
-  .obj--c .frame { grid-column: 3 / span 5; }  .obj--c .lbl { grid-column: 9 / span 4; align-self: center; }
-  .obj--d .frame { grid-column: 5 / span 8; }  .obj--d .lbl { grid-column: 1 / span 3; }
-  @media (max-width: 899px) {
-    .obj { grid-template-columns: 1fr; row-gap: var(--sc-5); padding-block: clamp(3rem, 9vh, 5rem); }
-    .obj .frame, .obj .lbl { grid-column: 1 / -1 !important; grid-row: auto; }
-  }
-
-  .obj .frame { width: min(100%, 76svh); justify-self: center; }
-  .frame { position: relative; background: var(--paper); border-radius: 2px; overflow: hidden; --ink: 1; box-shadow: 0 2px 6px rgb(0 0 0 / 0.3), 0 24px 60px -20px rgb(0 0 0 / 0.6); }
+  /* Stencil frame (signature) */
+  .frame { position: relative; background: var(--paper); border-radius: var(--r); overflow: hidden; --ink: 1; box-shadow: 0 2px 6px rgb(0 0 0 / 0.3), 0 24px 60px -24px rgb(0 0 0 / 0.7); }
   .frame img { display: block; width: 100%; height: auto; position: relative; z-index: 1; clip-path: inset(0 0 calc((1 - var(--ink)) * 100%) 0); }
   .frame canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
-  /* the needle line: a thin gold rule riding the edge of the inked part */
   .frame::after { content: ""; position: absolute; left: 0; right: 0; top: calc(var(--ink) * 100%); height: 1px; background: var(--sc-accent); z-index: 2; opacity: clamp(0, calc((1 - var(--ink)) * 40), 1); }
+  .sq img { aspect-ratio: 1; object-fit: cover; }
 
-  .lbl { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--sc-hairline-strong); }
-  .lbl .no { font: 300 clamp(3rem, 6vw, 5.5rem)/0.9 var(--sc-font-display); font-stretch: 62%; letter-spacing: -0.02em; color: var(--sc-accent); margin: var(--sc-4) 0 var(--sc-5); font-variant-numeric: tabular-nums; }
-  .lbl dl { margin: 0; display: grid; }
-  .lbl dl > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--sc-4); padding: 10px 0; border-bottom: 1px solid var(--sc-hairline); }
-  .lbl dt { font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--sc-ink-soft); padding-top: 3px; }
-  .lbl dd { margin: 0; font-size: var(--sc-t-base); line-height: 1.4; }
-  .lbl .note { margin: var(--sc-5) 0 0; color: var(--sc-ink-soft); max-width: 40ch; }
+  main > section { padding-block: clamp(4.5rem, 10vw, 8rem); }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: var(--sc-6); flex-wrap: wrap; margin-bottom: var(--sc-8); }
+  .head p { max-width: 40ch; margin: 0; }
 
-  /* Object 01 doubles as the opening: the name sits in its label column */
-  .open .lbl h1 { font: 500 var(--sc-t-3xl)/0.95 var(--sc-font-display); font-stretch: 112%; letter-spacing: -0.03em; margin: var(--sc-6) 0 var(--sc-4); text-wrap: balance; }
-  .open .lbl .intro { margin: 0 0 var(--sc-5); color: var(--sc-ink-soft); max-width: 34ch; font-size: var(--sc-t-lg); line-height: 1.4; }
-  .open .lbl .go { display: inline-block; margin: 0 0 var(--sc-6); font-family: var(--sc-font-mono); font-size: var(--sc-t-sm); letter-spacing: 0.04em; text-transform: uppercase; color: var(--sc-accent); text-underline-offset: 0.3em; }
-  .open { padding-top: clamp(5rem, 14vh, 8rem); }
+  /* Services */
+  .services .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.25rem, 3vw, 2.5rem); }
+  .svc { display: grid; gap: var(--sc-5); align-content: start; }
+  .svc h3 { font-size: var(--sc-t-2xl); line-height: 1; font-stretch: 108%; }
+  .svc p { margin: 0; max-width: 42ch; }
+  .svc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .svc li { padding: 7px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
+  .svc a.more { color: var(--sc-accent); font-weight: 500; text-underline-offset: 0.25em; text-decoration-thickness: 1px; justify-self: start; }
+  @media (max-width: 760px) { .services .grid { grid-template-columns: 1fr; } }
 
-  /* Small works rail */
-  .small [data-sc-stage] { display: flex; align-items: center; background: var(--sc-surface); }
-  .rail { gap: clamp(1.5rem, 3vw, 3rem); padding-inline: var(--sc-gutter) calc(var(--sc-gutter) + var(--index-w)); align-items: center; }
-  .rail__lead { flex: 0 0 clamp(15rem, 26vw, 22rem); }
-  .rail__lead h2 { font: 500 var(--sc-t-2xl)/1 var(--sc-font-display); font-stretch: 112%; letter-spacing: -0.03em; margin: var(--sc-4) 0; }
-  .rail__lead p { color: var(--sc-ink-soft); margin: 0; max-width: 28ch; }
-  .rail .piece { flex: 0 0 auto; margin: 0; }
-  .rail .piece .frame { height: clamp(16rem, 58vh, 34rem); aspect-ratio: 1; }
-  .rail .piece .frame img { height: 100%; width: 100%; object-fit: cover; }
-  .rail .piece figcaption { margin-top: var(--sc-4); display: flex; gap: var(--sc-4); align-items: baseline; }
-  .rail .piece figcaption .mono { color: var(--sc-accent); }
-  .rail__end { flex: 0 0 clamp(12rem, 20vw, 18rem); color: var(--sc-ink-soft); }
+  /* Work */
+  .work { background: var(--sc-surface); }
+  .work .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.75rem, 2vw, 1.5rem); }
+  .work figure { margin: 0; }
+  .work figcaption { margin-top: 10px; font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
+  .work figcaption b { color: var(--sc-ink); font-weight: 500; }
+  @media (max-width: 760px) { .work .grid { grid-template-columns: 1fr 1fr; } }
 
-  /* Reviews as wall text */
-  .wall { max-width: 92rem; margin-inline: auto; padding: clamp(5rem, 14vh, 9rem) var(--sc-gutter); }
-  .wall__head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(1rem, 2.5vw, 2.5rem); align-items: end; margin-bottom: var(--sc-9); }
-  .wall__head .lbl { grid-column: 1 / span 5; }
-  .wall__score { grid-column: 8 / span 5; display: flex; align-items: baseline; gap: var(--sc-5); justify-content: flex-end; }
-  .wall__score strong { font: 300 clamp(4.5rem, 11vw, 9rem)/0.85 var(--sc-font-display); font-stretch: 62%; color: var(--sc-accent); }
-  .wall__score span { color: var(--sc-ink-soft); }
-  .wall__score b { color: var(--sc-ink); font-weight: 500; }
-  .quotes { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(1rem, 2.5vw, 2.5rem); row-gap: var(--sc-9); }
-  .q { margin: 0; }
-  .q:nth-child(1) { grid-column: 1 / span 6; }
-  .q:nth-child(2) { grid-column: 8 / span 5; padding-top: var(--sc-9); }
-  .q:nth-child(3) { grid-column: 2 / span 5; }
-  .q:nth-child(4) { grid-column: 7 / span 6; }
-  .q:nth-child(5) { grid-column: 1 / span 5; }
-  .q blockquote { margin: 0; font: 400 var(--sc-t-xl)/1.25 var(--sc-font-display); letter-spacing: -0.015em; text-wrap: pretty; }
-  .q:nth-child(odd) blockquote { font-size: var(--sc-t-lg); line-height: 1.38; }
-  .q figcaption { margin-top: var(--sc-4); display: grid; gap: 4px; }
-  .q figcaption .mono { color: var(--sc-ink-soft); }
-  .q .reply { color: var(--sc-ink-soft); font-style: italic; font-size: var(--sc-t-sm); }
-  .wall .source { margin-top: var(--sc-8); color: var(--sc-ink-soft); }
-  @media (max-width: 899px) {
-    .wall__head, .quotes { grid-template-columns: 1fr; row-gap: var(--sc-7); }
-    .wall__head .lbl, .wall__score, .q { grid-column: 1 / -1 !important; padding-top: 0 !important; }
-    .wall__score { justify-content: flex-start; }
+  /* About */
+  .about .wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .about figure { margin: 0; }
+  .about figure img { display: block; width: 100%; height: auto; border-radius: var(--r); }
+  .about blockquote { margin: var(--sc-6) 0; font: 500 var(--sc-t-2xl)/1.1 var(--sc-font-display); font-stretch: 105%; letter-spacing: -0.02em; }
+  .about blockquote cite { display: block; margin-top: var(--sc-3); font: 400 var(--sc-t-sm)/1.4 var(--sc-font-text); color: var(--sc-ink-soft); font-style: normal; letter-spacing: 0; }
+  .about p { margin: 0; max-width: 46ch; }
+  @media (max-width: 860px) { .about .wrap { grid-template-columns: 1fr; } }
+
+  /* Reviews */
+  .reviews .score { display: flex; align-items: center; gap: 16px; }
+  .reviews .score strong { font: 300 clamp(3.5rem, 8vw, 6rem)/0.9 var(--sc-font-display); font-stretch: 62%; color: var(--sc-accent); }
+  .reviews .list { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); }
+  .rv { margin: 0; padding-top: var(--sc-5); border-top: 1px solid var(--line); display: grid; gap: var(--sc-4); align-content: start; }
+  .rv blockquote { margin: 0; font-size: var(--sc-t-lg); line-height: 1.4; }
+  .rv:first-child blockquote { font: 500 var(--sc-t-xl)/1.25 var(--sc-font-display); letter-spacing: -0.015em; }
+  .rv figcaption { font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
+  .rv figcaption b { color: var(--sc-ink); font-weight: 500; }
+  @media (max-width: 860px) { .reviews .list { grid-template-columns: 1fr; } }
+
+  /* Steps */
+  .steps ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 3vw, 2.5rem); counter-reset: s; }
+  .steps li { counter-increment: s; padding-top: var(--sc-5); border-top: 1px solid var(--line); }
+  .steps li::before { content: counter(s); display: block; font: 300 var(--sc-t-2xl)/1 var(--sc-font-display); font-stretch: 62%; color: var(--sc-accent); margin-bottom: var(--sc-4); }
+  .steps h3 { font-size: var(--sc-t-lg); letter-spacing: -0.01em; margin-bottom: 6px; }
+  .steps p { margin: 0; font-size: var(--sc-t-sm); }
+  @media (max-width: 860px) { .steps ol { grid-template-columns: 1fr 1fr; row-gap: var(--sc-7); } }
+
+  /* Closing CTA */
+  .cta .box { position: relative; overflow: hidden; border-radius: calc(var(--r) * 3); background: var(--paper); color: #1c1815; padding: clamp(2.5rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .cta canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none; }
+  .cta .box > :not(canvas) { position: relative; }
+  .cta .kicker { color: #8f6c28; }
+  .cta p { color: #55493f; margin: var(--sc-5) 0 var(--sc-6); max-width: 40ch; }
+  .cta .btn { background: #1c1815; color: #f2eadf; }
+  @media (hover: hover) { .cta .btn:hover { background: #3a302a; } }
+  .cta dl { margin: 0; display: grid; }
+  .cta dl div { padding: 14px 0; border-bottom: 1px solid rgb(28 24 21 / 0.14); }
+  .cta dt { font-size: var(--sc-t-xs); letter-spacing: 0.16em; text-transform: uppercase; color: #6b5d52; margin-bottom: 4px; }
+  .cta dd { margin: 0; font-size: var(--sc-t-base); overflow-wrap: anywhere; }
+  .cta dd a { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+  @media (max-width: 860px) { .cta .box { grid-template-columns: 1fr; } }
+
+  footer { padding: var(--sc-7) 0 var(--sc-8); color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+  footer .wrap { display: flex; justify-content: space-between; gap: var(--sc-4); flex-wrap: wrap; }
+
+
+  /* Eye toggle: open eye = light, closed eye = dark */
+  .mode { width: 42px; height: 42px; border-radius: 50%; border: 0; padding: 0; display: grid; place-items: center; cursor: pointer; background: transparent; color: inherit; box-shadow: inset 0 0 0 1px currentColor; transition: transform 120ms var(--sc-ease-out), background 160ms var(--sc-ease-out); }
+  .mode:active { transform: scale(0.94); }
+  .mode svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .mode .eye-shut { display: none; }
+  html[data-mode="dark"] .mode .eye-open { display: none; }
+  html[data-mode="dark"] .mode .eye-shut { display: block; }
+
+  .bar .mode { color: var(--sc-ink); box-shadow: inset 0 0 0 1px rgb(242 234 223 / 0.35); }
+  @media (hover: hover) { .bar .mode:hover { background: rgb(242 234 223 / 0.08); } }
+
+  /* Light version of B: warm paper ground, dark ink, a deeper gold that reads on light */
+  html[data-mode="light"] { --sc-canvas: #f6efe5; --sc-surface: #ece2d4; --sc-ink: #1c1815; --sc-ink-soft: #5a4e45; --sc-accent: #8f6c28; --sc-accent-ink: #fff8ee; --line: rgb(28 24 21 / 0.14); color-scheme: light; }
+  html[data-mode="light"] .bar.is-solid { background: rgb(246 239 229 / 0.92); }
+  html[data-mode="light"] .bar .mode, html[data-mode="light"] .btn--ghost { box-shadow: inset 0 0 0 1px rgb(28 24 21 / 0.3); }
+  @media (hover: hover) and (pointer: fine) {
+    html[data-mode="light"] .btn:not(.btn--ghost):hover { background: #7a5b20; }
+    html[data-mode="light"] .btn--ghost:hover, html[data-mode="light"] .bar .mode:hover { background: rgb(28 24 21 / 0.06); }
   }
+  html[data-mode="light"] .frame { box-shadow: 0 2px 6px rgb(28 24 21 / 0.12), 0 24px 50px -28px rgb(28 24 21 / 0.45); }
+  html[data-mode="light"] .cta .box { background: #1c1815; color: #f2eadf; }
+  html[data-mode="light"] .cta .kicker { color: #d6b36d; }
+  html[data-mode="light"] .cta p { color: #c9bcad; }
+  html[data-mode="light"] .cta .btn { background: #d6b36d; color: #1c1815; }
+  html[data-mode="light"] .cta dl div { border-bottom-color: rgb(242 234 223 / 0.16); }
+  html[data-mode="light"] .cta dt { color: #b5a898; }
+  html[data-mode="light"] .cta canvas { opacity: 0.35; }
 
-  /* 13: the empty plate (the peak) */
-  .plate [data-sc-stage] { display: grid; align-items: center; }
-  .plate__in { width: 100%; max-width: 92rem; margin-inline: auto; padding: 0 calc(var(--sc-gutter) + var(--index-w)) 0 var(--sc-gutter); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(1rem, 2.5vw, 2.5rem); align-items: center; }
-  .plate__frame { grid-column: 1 / span 6; position: relative; aspect-ratio: 4 / 5; max-height: 72svh; justify-self: center; width: auto; height: 72svh; }
-  .plate__frame svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .plate__frame rect, .plate__frame path { fill: none; stroke: var(--stencil-light); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 1; }
-  .plate__frame .r { stroke-dashoffset: calc(1 - clamp(0, var(--sc-p, 0) / 0.42, 1)); }
-  .plate__frame .x1 { stroke-dashoffset: calc(1 - clamp(0, (var(--sc-p, 0) - 0.30) / 0.2, 1)); opacity: 0.35; }
-  .plate__frame .x2 { stroke-dashoffset: calc(1 - clamp(0, (var(--sc-p, 0) - 0.38) / 0.2, 1)); opacity: 0.35; }
-  .plate__word { position: absolute; inset: 0; display: grid; place-items: center; font: 300 clamp(2rem, 4.4vw, 4rem)/1 var(--sc-font-display); font-stretch: 125%; letter-spacing: 0.04em; color: var(--stencil-light); text-align: center; opacity: clamp(0, calc((var(--sc-p, 0) - 0.42) / 0.12), 1); }
-  .plate .lbl { grid-column: 8 / span 5; }
-  .plate .lbl a { color: var(--sc-ink); text-underline-offset: 0.25em; }
-  .plate .fine { margin-top: var(--sc-6); color: var(--sc-ink-soft); }
-  @media (max-width: 899px) {
-    .plate__in { grid-template-columns: 1fr; row-gap: var(--sc-5); padding-inline: var(--sc-gutter); }
-    .plate__frame { grid-column: 1; height: 38svh; }
-    .plate .lbl { grid-column: 1; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .frame img { clip-path: none; }
-    .frame::after { display: none; }
-    .plate__frame rect, .plate__frame path { stroke-dashoffset: 0; }
-    .plate__word { opacity: 1; }
-  }
+  @media (prefers-reduced-motion: reduce) { .frame img { clip-path: none; } .frame::after { display: none; } }
 </style>
 </head>
 <body>
 
+<header class="bar" id="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/favicon.png" width="64" height="64" alt=""><span>Laura Buekers</span></a>
+    <nav aria-label="Hoofdmenu">
+      <a href="#diensten">Diensten</a>
+      <a href="#werk">Werk</a>
+      <a href="#laura">Over Laura</a>
+      <a href="#reviews">Reviews</a>
+      <button class="mode" id="mode" type="button"><svg class="eye-open" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="eye-shut" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 10c2.6 3.4 5.6 5 9 5s6.4-1.6 9-5"/><path d="M12 15v3M7.2 13.8 5.8 16.4M16.8 13.8l1.4 2.6M3.6 11.6 2 13.4M20.4 11.6 22 13.4"/></svg></button>
+      <a class="btn" href="#afspraak">Afspraak maken</a>
+    </nav>
+  </div>
+</header>
 
-<nav class="index" aria-label="Index van de catalogus">
-  <ol>
-    <li><a href="#o-01" title="Fox, bloemen en vlinders">01</a></li>
-    <li><a href="#o-02" title="Boeket">02</a></li>
-    <li><a href="#o-03" title="Vader en zoon">03</a></li>
-    <li><a href="#o-04" title="Lelie met rank">04</a></li>
-    <li><a href="#o-05" title="Maan met gezicht">05</a></li>
-    <li><a href="#o-06" title="Infinity met bloemen">06</a></li>
-    <li><a href="#o-07" title="Lelies">07</a></li>
-    <li><a href="#o-08" title="Tekst langs de rug">08</a></li>
-    <li><a href="#o-09" title="Klein werk">09</a></li>
-    <li><a href="#o-10" title="Wenkbrauwen">10</a></li>
-    <li><a href="#o-11" title="Laura">11</a></li>
-    <li><a href="#o-12" title="Reviews">12</a></li>
-    <li><a href="#o-13" title="Jouw ontwerp: afspraak maken">13</a></li>
-  </ol>
-</nav>
+<main id="top">
 
-<main class="cat">
-
-  <!-- 01 is the opening: the collection starts at the top of the page -->
-  <section class="obj obj--a open" id="o-01" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4" data-hero><img src="assets/work-1.jpg" width="1100" height="1100" alt="Sleeve met een vos, bloemen en vlinders"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl">
-      <h1>Laura Buekers Tattoo</h1>
-      <p class="intro">Tattoos en wenkbrauwen in Wellen. Een catalogus van recent werk.</p>
-      <a class="go" href="#o-13" data-jump>Afspraak maken</a>
-      <p class="no">01</p>
-      <dl><div><dt>Werk</dt><dd>Fox, bloemen en vlinders</dd></div><div><dt>Plaats</dt><dd>Arm</dd></div><div><dt>Techniek</dt><dd>Fine line, zwart-grijs</dd></div></dl>
+  <section class="hero" data-sc-act="flow">
+    <div class="wrap">
+      <div data-sc-in data-sc-stagger="80">
+        <p class="kicker">Tattoo studio in Wellen</p>
+        <h1>Tattoos en wenkbrauwen met <em>oog voor detail</em>.</h1>
+        <p class="lede">Fine line, zwart-grijs en persoonlijke ontwerpen. Ook microblading en powder brows.</p>
+        <div class="actions">
+          <a class="btn" href="#afspraak">Afspraak maken</a>
+          <a class="btn btn--ghost" href="#werk">Bekijk werk</a>
+        </div>
+        <p class="proof"><span class="stars" aria-hidden="true">★★★★★</span><span><b>5,0</b> op Google · 21 reviews</span></p>
+      </div>
+      <div class="frame" data-stencil data-hero><img src="assets/work-1.jpg" width="1100" height="1100" alt="Sleeve met een vos, bloemen en vlinders"><canvas aria-hidden="true"></canvas></div>
     </div>
   </section>
 
-  <section class="obj obj--b" id="o-02" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4"><img src="assets/work-2.jpg" width="1100" height="1100" loading="lazy" alt="Fijn getekend boeket van bloemen"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">02</p><dl><div><dt>Werk</dt><dd>Boeket</dd></div><div><dt>Plaats</dt><dd>Arm</dd></div><div><dt>Techniek</dt><dd>Fine line</dd></div></dl></div>
-  </section>
-
-  <section class="obj obj--d" id="o-03" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4"><img src="assets/work-3.jpg" width="1100" height="1100" loading="lazy" alt="Zwart-grijs portret van een vader en zoon met twee vuisten"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">03</p><dl><div><dt>Werk</dt><dd>Vader en zoon</dd></div><div><dt>Plaats</dt><dd>Schouderblad</dd></div><div><dt>Techniek</dt><dd>Zwart-grijs</dd></div></dl></div>
-  </section>
-
-  <section class="obj obj--c" id="o-04" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4"><img src="assets/work-4.jpg" width="1100" height="1100" loading="lazy" alt="Lelie met een rank langs de bovenarm"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">04</p><dl><div><dt>Werk</dt><dd>Lelie met rank</dd></div><div><dt>Plaats</dt><dd>Bovenarm</dd></div><div><dt>Techniek</dt><dd>Fine line</dd></div></dl></div>
-  </section>
-
-  <section class="obj obj--b" id="o-05" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4"><img src="assets/work-5.jpg" width="1100" height="1100" loading="lazy" alt="Halve maan met een gezicht"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">05</p><dl><div><dt>Werk</dt><dd>Maan met gezicht</dd></div><div><dt>Plaats</dt><dd>Bovenarm</dd></div><div><dt>Techniek</dt><dd>Fine line, dotwork</dd></div></dl></div>
-  </section>
-
-  <section class="obj obj--a" id="o-06" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4"><img src="assets/work-6.jpg" width="1100" height="1100" loading="lazy" alt="Infinity-teken met bloemen en namen op de onderarm"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">06</p><dl><div><dt>Werk</dt><dd>Infinity met bloemen</dd></div><div><dt>Plaats</dt><dd>Onderarm</dd></div><div><dt>Techniek</dt><dd>Fine line, lettering</dd></div></dl></div>
-  </section>
-
-  <section class="obj obj--c" id="o-07" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4"><img src="assets/work-7.jpg" width="1100" height="1100" loading="lazy" alt="Grote fijne lelies langs de arm"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">07</p><dl><div><dt>Werk</dt><dd>Lelies</dd></div><div><dt>Plaats</dt><dd>Arm</dd></div><div><dt>Techniek</dt><dd>Fine line</dd></div></dl></div>
-  </section>
-
-  <section class="obj obj--d" id="o-08" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4" style="max-width: 34rem; justify-self: center; width: 100%;"><img src="assets/work-8.jpg" width="1100" height="1379" loading="lazy" alt="Fijne tekst langs de wervelkolom"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">08</p><dl><div><dt>Werk</dt><dd>Tekst langs de rug</dd></div><div><dt>Plaats</dt><dd>Rug</dd></div><div><dt>Techniek</dt><dd>Lettering</dd></div></dl></div>
-  </section>
-
-  <!-- 09: small works, travelling sideways -->
-  <section class="small" id="o-09" data-sc-act="pan" data-sc-span="3">
-    <div data-sc-stage>
-      <div class="rail" data-sc-pan="0.04">
-        <div class="rail__lead"><p class="mono" style="color: var(--sc-accent)">09</p><h2>Klein werk</h2><p>Namen, data en kleine tekens. Fijn en precies gezet.</p></div>
-        <figure class="piece"><div class="frame" data-stencil><img src="assets/extra-1.jpg" width="1100" height="1238" loading="lazy" alt="Lelie met tekst op de bovenarm"><canvas aria-hidden="true"></canvas></div><figcaption><span class="mono">09a</span><span>Lelie met tekst. Bovenarm.</span></figcaption></figure>
-        <figure class="piece"><div class="frame" data-stencil><img src="assets/extra-2.jpg" width="1100" height="1100" loading="lazy" alt="Hart van een vingerafdruk en babyvoetjes met namen"><canvas aria-hidden="true"></canvas></div><figcaption><span class="mono">09b</span><span>Vingerafdruk en voetjes. Onderarm.</span></figcaption></figure>
-        <figure class="piece"><div class="frame" data-stencil><img src="assets/extra-3.jpg" width="1100" height="1100" loading="lazy" alt="Het getal 224 op twee onderarmen"><canvas aria-hidden="true"></canvas></div><figcaption><span class="mono">09c</span><span>Cijfers, in duo. Onderarmen.</span></figcaption></figure>
-        <div class="rail__end"><p>Elk ontwerp wordt samen met jou uitgetekend.</p></div>
+  <section class="services" id="diensten">
+    <div class="wrap">
+      <div class="head" data-sc-in data-sc-stagger="70">
+        <div><p class="kicker">Diensten</p><h2>Wat Laura doet</h2></div>
+        <p class="soft">Elk ontwerp wordt samen met jou uitgewerkt, tot het precies klopt.</p>
+      </div>
+      <div class="grid">
+        <article class="svc" data-sc-in>
+          <div class="frame sq" data-stencil><img src="assets/work-7.jpg" width="1100" height="1100" loading="lazy" alt="Grote fijne lelies langs de arm"><canvas aria-hidden="true"></canvas></div>
+          <h3>Tattoos</h3>
+          <p class="soft">Van een klein teken met betekenis tot een volledige sleeve. Strakke lijnen en zachte schaduw.</p>
+          <ul><li>Fine line</li><li>Zwart-grijs</li><li>Bloemen en botanisch</li><li>Lettering</li></ul>
+          <a class="more" href="#werk">Bekijk het werk</a>
+        </article>
+        <article class="svc" data-sc-in>
+          <div class="frame sq" data-stencil><img src="assets/brows-1.jpg" width="1100" height="1100" loading="lazy" alt="Gezette wenkbrauwen van dichtbij"><canvas aria-hidden="true"></canvas></div>
+          <h3>Wenkbrauwen</h3>
+          <p class="soft">Microblading en powder brows. Dezelfde rust en precisie, voor wenkbrauwen die bij je gezicht passen.</p>
+          <ul><li>Microblading</li><li>Powder brows</li></ul>
+          <a class="more" href="#afspraak">Vraag naar de mogelijkheden</a>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="obj obj--b" id="o-10" data-sc-act="flow">
-    <div class="frame" data-stencil data-sc-tilt="4"><img src="assets/brows-1.jpg" width="1100" height="1100" loading="lazy" alt="Gezette wenkbrauwen van dichtbij"><canvas aria-hidden="true"></canvas></div>
-    <div class="lbl"><p class="no">10</p><dl><div><dt>Werk</dt><dd>Wenkbrauwen</dd></div><div><dt>Plaats</dt><dd>Gezicht</dd></div><div><dt>Techniek</dt><dd>Microblading en powder brows</dd></div></dl><p class="note">Naast tattoos zet Laura ook wenkbrauwen. Dezelfde rust en precisie.</p></div>
-  </section>
-
-  <section class="obj obj--a" id="o-11" data-sc-act="flow">
-    <div class="frame" data-sc-reveal="up" data-sc-reveal-at="0.1 0.45"><img src="assets/laura-studio.jpg" width="1300" height="1300" loading="lazy" alt="Laura Buekers in haar studio, voor de gouden luipaardmuur"></div>
-    <div class="lbl"><p class="no">11</p><dl><div><dt>Naam</dt><dd>Laura Buekers</dd></div><div><dt>Studio</dt><dd>Bloemenstraat 22, Wellen</dd></div><div><dt>Werk</dt><dd>Tattoos, microblading, powder brows</dd></div></dl><p class="note">“Vriendelijk, zorgzaam en professioneel.” Davy Daniels, Google review.</p></div>
-  </section>
-
-  <!-- 12: wall text -->
-  <section class="wall" id="o-12">
-    <div class="wall__head" data-sc-in data-sc-stagger="70">
-      <div class="lbl"><p class="no">12</p><dl><div><dt>Werk</dt><dd>Wat klanten zeggen</dd></div><div><dt>Bron</dt><dd>Google reviews</dd></div></dl></div>
-      <div class="wall__score"><strong>5,0</strong><span>uit <b data-sc-count="0 21">0</b> reviews</span></div>
+  <section class="work" id="werk">
+    <div class="wrap">
+      <div class="head" data-sc-in data-sc-stagger="70">
+        <div><p class="kicker">Werk</p><h2>Recent gezet</h2></div>
+        <p class="soft">Een greep uit het werk van de afgelopen maanden.</p>
+      </div>
+      <div class="grid">
+        <figure><div class="frame sq" data-stencil><img src="assets/work-2.jpg" width="1100" height="1100" loading="lazy" alt="Fijn getekend boeket van bloemen"><canvas aria-hidden="true"></canvas></div><figcaption><b>Boeket.</b> Arm.</figcaption></figure>
+        <figure><div class="frame sq" data-stencil><img src="assets/work-3.jpg" width="1100" height="1100" loading="lazy" alt="Zwart-grijs portret van een vader en zoon met twee vuisten"><canvas aria-hidden="true"></canvas></div><figcaption><b>Vader en zoon.</b> Schouderblad.</figcaption></figure>
+        <figure><div class="frame sq" data-stencil><img src="assets/work-5.jpg" width="1100" height="1100" loading="lazy" alt="Halve maan met een gezicht"><canvas aria-hidden="true"></canvas></div><figcaption><b>Maan met gezicht.</b> Bovenarm.</figcaption></figure>
+        <figure><div class="frame sq" data-stencil><img src="assets/work-4.jpg" width="1100" height="1100" loading="lazy" alt="Lelie met een rank langs de bovenarm"><canvas aria-hidden="true"></canvas></div><figcaption><b>Lelie met rank.</b> Bovenarm.</figcaption></figure>
+        <figure><div class="frame sq" data-stencil><img src="assets/extra-2.jpg" width="1100" height="1100" loading="lazy" alt="Hart van een vingerafdruk en babyvoetjes met namen"><canvas aria-hidden="true"></canvas></div><figcaption><b>Vingerafdruk en voetjes.</b> Onderarm.</figcaption></figure>
+        <figure><div class="frame sq" data-stencil><img src="assets/work-6.jpg" width="1100" height="1100" loading="lazy" alt="Infinity-teken met bloemen en namen op de onderarm"><canvas aria-hidden="true"></canvas></div><figcaption><b>Infinity met bloemen.</b> Onderarm.</figcaption></figure>
+      </div>
     </div>
-    <div class="quotes" data-sc-in data-sc-stagger="90">
-      <figure class="q"><blockquote>“Voor mij heeft ze een heel bijzondere tattoo gezet: het voetafdrukje van ons zoontje. Zoiets persoonlijks vraagt om iemand die met zorg, precisie en respect werkt, en dat heeft ze meer dan bewezen.”</blockquote><figcaption><span class="mono">Yana Ongenaden · 6 maanden geleden</span><span class="reply">Laura: “Super lief Yana merci!! Altijd gezellig.”</span></figcaption></figure>
-      <figure class="q"><blockquote>“Ze nam de tijd om mijn ideeën te bespreken en kwam met een ontwerp dat precies aansloot bij wat ik in gedachten had.”</blockquote><figcaption><span class="mono">Axel Bollen · een jaar geleden</span><span class="reply">Laura: “Dankjewel Axel!”</span></figcaption></figure>
-      <figure class="q"><blockquote>“Al mijn tattoos zijn prachtig gezet met fijne, strakke lijnen. Mijn vingertattoos houden ook enorm goed, ondanks dat ik kapster ben en met de handen in het water zit.”</blockquote><figcaption><span class="mono">Anne Hindrikx · 6 maanden geleden</span><span class="reply">Laura: “Dankjewel Anne!”</span></figcaption></figure>
-      <figure class="q"><blockquote>“Deze prachtige meid heeft mijn patchwork sleeve getatoeëerd, die trouwens nog niet af is, want ik blijf lege plekjes zien om op te vullen.”</blockquote><figcaption><span class="mono">Femke Iliaens · 6 maanden geleden</span><span class="reply">Laura: “Ik kijk al uit naar onze volgende afspraak!”</span></figcaption></figure>
-      <figure class="q"><blockquote>“Echt een top tattoo artist! Super strakke lijnen, topdetails, alles samengevat: topwerk.”</blockquote><figcaption><span class="mono">Remy Gucciardi · een jaar geleden</span><span class="reply">Laura: “Dankjewel Remy!”</span></figcaption></figure>
-    </div>
-    <p class="source mono">Reviews afkomstig van Google.</p>
   </section>
 
-  <!-- 13: the empty plate. The next number in the catalogue is the visitor's. -->
-  <section class="plate" id="o-13" data-sc-act="pin" data-sc-span="3.6">
-    <div data-sc-stage>
-      <div class="plate__in">
-        <div class="plate__frame" aria-hidden="true">
-          <svg viewBox="0 0 400 500" preserveAspectRatio="none">
-            <rect class="r" x="1" y="1" width="398" height="498" pathLength="1"/>
-            <path class="x1" d="M1 1 L399 499" pathLength="1"/>
-            <path class="x2" d="M399 1 L1 499" pathLength="1"/>
-          </svg>
-          <div class="plate__word">Jouw<br>ontwerp</div>
+  <section class="about" id="laura" data-sc-act="flow">
+    <div class="wrap">
+      <figure data-sc-reveal="up" data-sc-reveal-at="0.08 0.45"><img src="assets/laura-studio.jpg" width="1300" height="1300" loading="lazy" alt="Laura Buekers in haar studio, voor de gouden luipaardmuur"></figure>
+      <div data-sc-in data-sc-stagger="80">
+        <p class="kicker">Over Laura</p>
+        <h2>Je voelt je meteen op je gemak</h2>
+        <blockquote>“Vriendelijk, zorgzaam en professioneel.”<cite>Davy Daniels, Google review</cite></blockquote>
+        <p class="soft">Klanten schrijven dat Laura proper werkt, de tijd neemt voor je wensen en je meteen op je gemak stelt. Veel mensen komen terug voor hun volgende tattoo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="head" data-sc-in data-sc-stagger="70">
+        <div><p class="kicker">Reviews</p><h2>Wat klanten zeggen</h2></div>
+        <div class="score"><strong>5,0</strong><span class="soft"><span class="stars" aria-hidden="true">★★★★★</span><br><b data-sc-count="0 21" style="color: var(--sc-ink)">0</b> reviews op Google</span></div>
+      </div>
+      <div class="list" data-sc-in data-sc-stagger="90">
+        <figure class="rv"><blockquote>“Voor mij heeft ze een heel bijzondere tattoo gezet: het voetafdrukje van ons zoontje. Zoiets persoonlijks vraagt om iemand die met zorg, precisie en respect werkt, en dat heeft ze meer dan bewezen.”</blockquote><figcaption><b>Yana Ongenaden</b> · 6 maanden geleden</figcaption></figure>
+        <figure class="rv"><blockquote>“Al mijn tattoos zijn prachtig gezet met fijne, strakke lijnen. Mijn vingertattoos houden ook enorm goed, ondanks dat ik kapster ben.”</blockquote><figcaption><b>Anne Hindrikx</b> · 6 maanden geleden</figcaption></figure>
+        <figure class="rv"><blockquote>“Ze nam de tijd om mijn ideeën te bespreken en kwam met een ontwerp dat precies aansloot bij wat ik in gedachten had.”</blockquote><figcaption><b>Axel Bollen</b> · een jaar geleden</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="wrap">
+      <div class="head" data-sc-in><div><p class="kicker">Zo werkt het</p><h2>Van idee naar tattoo</h2></div></div>
+      <ol data-sc-in data-sc-stagger="80">
+        <li><h3>Mail je idee</h3><p class="soft">Vertel wat je wilt, waar op je lichaam en hoe groot. Voorbeelden helpen.</p></li>
+        <li><h3>Ontwerp</h3><p class="soft">Laura tekent een ontwerp uit dat bij jou en je huid past.</p></li>
+        <li><h3>Afspraak</h3><p class="soft">In de studio nemen we rustig de tijd, in een ontspannen sfeer.</p></li>
+        <li><h3>Nazorg</h3><p class="soft">Je krijgt duidelijke tips zodat je tattoo mooi geneest.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="cta" id="afspraak">
+    <div class="wrap">
+      <div class="box" id="ctabox">
+        <canvas aria-hidden="true" id="ctacanvas"></canvas>
+        <div>
+          <p class="kicker">Afspraak maken</p>
+          <h2>Klaar voor je volgende tattoo?</h2>
+          <p>Mail Laura met je idee, de plaats op je lichaam en wat voorbeelden. Je krijgt zo snel mogelijk antwoord.</p>
+          <a class="btn" href="mailto:laurabuekerstattoo@gmail.com?subject=Afspraak%20tattoo">Mail Laura</a>
         </div>
-        <div class="lbl">
-          <p class="no">13</p>
-          <dl>
-            <div data-sc-cue="0.46"><dt>Werk</dt><dd>Jouw ontwerp</dd></div>
-            <div data-sc-cue="0.54"><dt>Plaats</dt><dd>Jij kiest</dd></div>
-            <div data-sc-cue="0.62"><dt>Techniek</dt><dd>Samen uitgetekend</dd></div>
-            <div data-sc-cue="0.70"><dt>Afspraak</dt><dd><a href="mailto:laurabuekerstattoo@gmail.com?subject=Afspraak%20tattoo">laurabuekerstattoo@gmail.com</a></dd></div>
-            <div data-sc-cue="0.76"><dt>Studio</dt><dd>Bloemenstraat 22, 3830 Wellen · <a href="https://www.google.com/maps/search/?api=1&amp;query=Laura+Buekers+Tattoo+Bloemenstraat+22+3830+Wellen" target="_blank" rel="noopener">Route plannen</a></dd></div>
-          </dl>
-          <p class="fine mono" data-sc-cue="0.82">© 2026 Laura Buekers Tattoo</p>
-        </div>
+        <dl>
+          <div><dt>E-mail</dt><dd><a href="mailto:laurabuekerstattoo@gmail.com">laurabuekerstattoo@gmail.com</a></dd></div>
+          <div><dt>Studio</dt><dd>Bloemenstraat 22, 3830 Wellen</dd></div>
+          <div><dt>Route</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Laura+Buekers+Tattoo+Bloemenstraat+22+3830+Wellen" target="_blank" rel="noopener">Plan je route in Google Maps</a></dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
 </main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Laura Buekers Tattoo</span><span>Reviews afkomstig van Google.</span></div>
+</footer>
 
 <script src="scrollcraft.js"></script>
 <script>
@@ -304,23 +319,19 @@ ScrollCraft.mount(document.body);
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var frames = [].slice.call(document.querySelectorAll('[data-stencil]'));
 
-  // Signature: every piece starts as its stencil. The transfer lines are traced from the photo itself
-  // (blur, then edge strength), drawn in transfer purple on paper. Scroll inks the photo in from the top.
-  function trace(frame) {
-    var img = frame.querySelector('img'), cv = frame.querySelector('canvas');
-    if (!img || !cv || frame.__traced) return;
-    frame.__traced = true;
-    var W = 520, H = Math.round(W * img.naturalHeight / img.naturalWidth);
-    cv.width = W; cv.height = H;
+  // Signature: each photo starts as its stencil, traced from the photo itself (blur, then edge strength),
+  // in transfer purple on paper. Scroll inks the photo in from the top, with a thin gold needle line on the edge.
+  function edges(img, W, H) {
+    var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
     var ctx = cv.getContext('2d', { willReadFrequently: true });
-    ctx.drawImage(img, 0, 0, W, H);
-    var src;
-    try { src = ctx.getImageData(0, 0, W, H); } catch (e) { return; }
-    var d = src.data, n = W * H, g = new Float32Array(n), b = new Float32Array(n), m = new Float32Array(n);
-    for (var i = 0; i < n; i++) g[i] = 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2];
-    for (var y = 1; y < H - 1; y++) for (var x = 1; x < W - 1; x++) {
-      var s = 0; for (var yy = -1; yy <= 1; yy++) for (var xx = -1; xx <= 1; xx++) s += g[(y + yy) * W + x + xx];
-      b[y * W + x] = s / 9;
+    var s = Math.max(W / img.naturalWidth, H / img.naturalHeight), dw = img.naturalWidth * s, dh = img.naturalHeight * s;
+    ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
+    var src; try { src = ctx.getImageData(0, 0, W, H); } catch (e) { return null; }
+    var d = src.data, n = W * H, g = new Float32Array(n), b = new Float32Array(n), m = new Float32Array(n), i, x, y;
+    for (i = 0; i < n; i++) g[i] = 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2];
+    for (y = 1; y < H - 1; y++) for (x = 1; x < W - 1; x++) {
+      var t = 0; for (var yy = -1; yy <= 1; yy++) for (var xx = -1; xx <= 1; xx++) t += g[(y + yy) * W + x + xx];
+      b[y * W + x] = t / 9;
     }
     var vals = [];
     for (y = 2; y < H - 2; y++) for (x = 2; x < W - 2; x++) {
@@ -331,21 +342,38 @@ ScrollCraft.mount(document.body);
       if ((k & 7) === 0) vals.push(m[k]);
     }
     vals.sort(function (p, q) { return p - q; });
-    var lo = vals[Math.floor(vals.length * 0.84)] || 20, hi = vals[Math.floor(vals.length * 0.97)] || 60;
-    var out = ctx.createImageData(W, H), o = out.data;
-    for (i = 0; i < n; i++) {
-      var a = Math.max(0, Math.min(1, (m[i] - lo) / Math.max(hi - lo, 1)));
-      o[i * 4] = 75; o[i * 4 + 1] = 61; o[i * 4 + 2] = 158; o[i * 4 + 3] = Math.round(a * 235);
+    return { m: m, lo: vals[Math.floor(vals.length * 0.84)] || 20, hi: vals[Math.floor(vals.length * 0.97)] || 60 };
+  }
+  function paint(cv, W, H, e, rgb, alpha) {
+    cv.width = W; cv.height = H;
+    var ctx = cv.getContext('2d'), out = ctx.createImageData(W, H), o = out.data;
+    for (var i = 0; i < W * H; i++) {
+      var a = Math.max(0, Math.min(1, (e.m[i] - e.lo) / Math.max(e.hi - e.lo, 1)));
+      o[i * 4] = rgb[0]; o[i * 4 + 1] = rgb[1]; o[i * 4 + 2] = rgb[2]; o[i * 4 + 3] = Math.round(a * alpha);
     }
-    ctx.clearRect(0, 0, W, H);
     ctx.putImageData(out, 0, 0);
   }
-  frames.forEach(function (f) {
-    var img = f.querySelector('img');
-    if (reduced) return;
-    var go = function () { trace(f); };
+  function trace(f) {
+    if (f.__traced) return; f.__traced = true;
+    var img = f.querySelector('img'), cv = f.querySelector('canvas'), r = f.getBoundingClientRect();
+    var W = 520, H = Math.round(W * (r.height / Math.max(r.width, 1) || 1));
+    var e = edges(img, W, H); if (e) paint(cv, W, H, e, [75, 61, 158], 235);
+  }
+  if (!reduced) frames.forEach(function (f) {
+    var img = f.querySelector('img'), go = function () { trace(f); };
     if (img.complete && img.naturalWidth) go(); else img.addEventListener('load', go, { once: true });
   });
+
+  // The closing card carries a faint stencil of the studio photo, where the appointment happens.
+  (function () {
+    var cv = document.getElementById('ctacanvas'), box = document.getElementById('ctabox');
+    if (!cv || reduced) return;
+    var img = new Image(); img.src = 'assets/laura-studio.jpg';
+    img.onload = function () {
+      var r = box.getBoundingClientRect(), W = 640, H = Math.round(W * r.height / Math.max(r.width, 1));
+      var e = edges(img, W, H); if (e) paint(cv, W, H, e, [143, 108, 40], 90);
+    };
+  })();
 
   function ink() {
     var vh = innerHeight;
@@ -353,39 +381,45 @@ ScrollCraft.mount(document.body);
       if (reduced) { f.style.setProperty('--ink', 1); return; }
       var r = f.getBoundingClientRect();
       if (r.bottom < -vh || r.top > vh * 2) return;
-      // starts inking when the frame's top is 85% down the screen, done when it reaches 25%
-      var t = (vh * 0.85 - r.top) / (vh * 0.6);
-      if (f.hasAttribute('data-hero')) t = 0.42 + scrollY / (vh * 0.7);
-      // pieces on the sideways rail ink as they cross the screen horizontally
-      if (f.closest('.rail')) t = (innerWidth * 0.9 - r.left) / (innerWidth * 0.55);
+      var t = (vh * 0.9 - r.top) / (vh * 0.55);
+      if (f.hasAttribute('data-hero')) t = 0.45 + scrollY / (vh * 0.6);
       f.style.setProperty('--ink', Math.max(0, Math.min(1, t)).toFixed(3));
     });
+    document.getElementById('bar').classList.toggle('is-solid', scrollY > 24);
   }
   var tick = false;
   addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(function () { tick = false; ink(); }); } }, { passive: true });
   addEventListener('resize', ink); ink();
 
-  // Index: mark the object in the middle of the screen
-  var links = {}; [].forEach.call(document.querySelectorAll('.index a'), function (a) { links[a.getAttribute('href').slice(1)] = a; });
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
-      var a = links[e.target.id]; if (a) { a.setAttribute('aria-current', 'true'); if (a.scrollIntoView && innerWidth < 900) a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
-    });
-  }, { rootMargin: '-48% 0px -48% 0px' });
-  [].forEach.call(document.querySelectorAll('.cat > section'), function (s) { io.observe(s); });
-
-  // Jumps land instantly. 13 lands on its finished state, not on an empty frame.
-  [].forEach.call(document.querySelectorAll('a[href^="#o-"]'), function (a) {
+  // In-page links land instantly, just below the fixed bar.
+  [].forEach.call(document.querySelectorAll('a[href^="#"]'), function (a) {
     a.addEventListener('click', function (e) {
-      var s = document.getElementById(a.getAttribute('href').slice(1)); if (!s) return;
+      var id = a.getAttribute('href').slice(1), s = document.getElementById(id);
+      if (!s) return;
       e.preventDefault();
-      var top = s.getBoundingClientRect().top + scrollY;
-      if (s.id === 'o-13') top = top + s.offsetHeight - innerHeight;
-      window.scrollTo({ top: top, behavior: 'instant' });
+      var top = id === 'top' ? 0 : s.getBoundingClientRect().top + scrollY - 72;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
     });
   });
+})();
+</script>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('mode');
+  if (!root.dataset.mode) root.dataset.mode = 'dark';
+  function label() {
+    var dark = root.dataset.mode === 'dark';
+    btn.setAttribute('aria-label', dark ? 'Lichte weergave' : 'Donkere weergave');
+    btn.setAttribute('title', dark ? 'Lichte weergave' : 'Donkere weergave');
+    btn.setAttribute('aria-pressed', String(dark));
+  }
+  btn.addEventListener('click', function () {
+    root.dataset.mode = root.dataset.mode === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('lb-mode', root.dataset.mode); } catch (e) {}
+    label();
+  });
+  label();
 })();
 </script>
 </body>

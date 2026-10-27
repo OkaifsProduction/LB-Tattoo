@@ -7,7 +7,7 @@ Er staan twee voorstellen voor de homepagina klaar, zodat Laura kan kiezen:
 | Map | Voorstel |
 | --- | --- |
 | `optie-a/` | Licht, in hoofdstukken. Crème en goud, een gouden rank in de marge die eindigt in de lotus van het logo. |
-| `optie-b/` | Donker, als catalogus. Elk werk een nummer en een kaartje; elke foto begint als stencil en wordt ingekleurd tijdens het scrollen. |
+| `optie-b/` | Donker, als landingspagina: diensten, werk, over Laura, reviews en afspraak. Elke foto begint als stencil-tekening en wordt de echte foto tijdens het scrollen. |
 
 `index.html` in de hoofdmap is een keuzepagina die naar beide voorstellen linkt.
 Als er gekozen is, komt het gekozen voorstel in de hoofdmap en verdwijnt de keuzepagina.
