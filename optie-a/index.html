@@ -161,6 +161,26 @@
   html[data-mode="dark"] .folio { color: #f2eadf; }
   @media (max-width: 899px) { html[data-mode="dark"] .folio { background: rgb(22 18 15 / 0.94); color: #f2eadf; } }
 
+
+  /* Tattooed title: the outline is lined first in gold, then the letters are inked in */
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .title h1 .art { display: block; width: calc(var(--w, 6.4) * 1em); max-width: 100%; height: auto; overflow: visible; }
+  .art text { font-family: var(--sc-font-display); font-weight: 500; font-size: 100px; letter-spacing: -4.5px; fill: currentColor; fill-opacity: 0; stroke: var(--sc-accent); stroke-width: 1.1; stroke-linejoin: round; stroke-dasharray: 900; stroke-dashoffset: 900; animation: tat-line 2.4s cubic-bezier(0.45, 0, 0.2, 1) 0.2s forwards, tat-ink 1s cubic-bezier(0.23, 1, 0.32, 1) 2.1s forwards; }
+  .art .l2 { animation-delay: 0.9s, 2.5s; }
+  .art .gold { fill: var(--sc-accent); }
+  @keyframes tat-line { to { stroke-dashoffset: 0; } }
+  @keyframes tat-ink { to { fill-opacity: 1; stroke-opacity: 0; } }
+
+  /* Fine-line underline under chapter titles, drawn when the title comes into view */
+  .fl { display: block; width: clamp(7rem, 14vw, 11rem); height: 14px; margin-top: var(--sc-4); overflow: visible; }
+  .fl path { fill: none; stroke: var(--sc-accent); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s cubic-bezier(0.45, 0, 0.2, 1); }
+  .fl.on path { stroke-dashoffset: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .art text { animation: none; fill-opacity: 1; stroke: none; }
+    .fl path { transition: none; stroke-dashoffset: 0; }
+  }
+
   @media (prefers-reduced-motion: reduce) { .lp { stroke-dashoffset: 0; } .plate-draw svg { opacity: 0; } .plate-draw img { opacity: 1; } }
 </style>
 </head>
@@ -181,7 +201,7 @@
   <section class="title g-cream" data-chapter="Laura Buekers Tattoo" data-ground="cream">
     <div data-sc-in data-sc-stagger="80">
       <p class="label">Tattoo studio in Wellen</p>
-      <h1>Fijne lijnen.<br><span class="gold">Mooi</span> gezet.</h1>
+      <h1><span class="sr">Fijne lijnen. Mooi gezet.</span><svg class="art" viewBox="0 -78 640 196" aria-hidden="true"><text class="l1" x="0" y="0">Fijne lijnen.</text><text class="l2" x="0" y="94"><tspan class="gold">Mooi</tspan> gezet.</text></svg></h1>
       <p class="sub">Bloemen, botanische ontwerpen en persoonlijke tattoos met oog voor detail. Ook microblading en powder brows.</p>
       <a class="go" href="#afspraak">Afspraak maken <span aria-hidden="true">&rarr;</span></a>
     </div>
@@ -347,6 +367,36 @@ ScrollCraft.mount(document.body);
       window.scrollTo({ top: top + s.offsetHeight - innerHeight, behavior: 'instant' });
     });
   });
+
+
+  // Fit the tattooed title's box to the real glyphs once the face has loaded
+  (function () {
+    var svg = document.querySelector('.title .art');
+    if (!svg || !svg.getBBox) return;
+    function fit() {
+      var b = svg.getBBox(), pad = 4;
+      svg.setAttribute('viewBox', [b.x - pad, b.y - pad, b.width + pad * 2, b.height + pad * 2].join(' '));
+      svg.parentNode.style.setProperty('--w', ((b.width + pad * 2) / 100).toFixed(3));
+    }
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
+  })();
+
+  // A fine wavy line under each chapter title, drawn once as it scrolls into view
+  (function () {
+    var ns = 'http://www.w3.org/2000/svg';
+    var heads = document.querySelectorAll('.page h2');
+    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -15% 0px' }) : null;
+    [].forEach.call(heads, function (h2) {
+      var svg = document.createElementNS(ns, 'svg'), p = document.createElementNS(ns, 'path');
+      svg.setAttribute('class', 'fl'); svg.setAttribute('viewBox', '0 0 176 14'); svg.setAttribute('aria-hidden', 'true');
+      p.setAttribute('d', 'M1 9 C 22 1, 40 13, 62 7 S 102 2, 124 8 S 160 11, 175 5');
+      p.setAttribute('pathLength', '1');
+      svg.appendChild(p); h2.insertAdjacentElement('afterend', svg);
+      if (io) io.observe(svg); else svg.classList.add('on');
+    });
+  })();
 
   // folio: chapter name and ground follow the section in the middle of the viewport
   var chapter = document.getElementById('chapter'), root = document.documentElement;
