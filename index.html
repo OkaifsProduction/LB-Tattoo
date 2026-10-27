@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laura Buekers Tattoo · Twee voorstellen</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..600&family=Outfit:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f8f2e8; --ink: #1c1815; --soft: #5a4e45; --gold: #a37d36; --dark: #13100e; --cream: #f2eadf; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100svh; background: linear-gradient(90deg, var(--bg) 50%, var(--dark) 50%); color: var(--ink); font: 400 17px/1.55 "Archivo", system-ui, sans-serif; display: grid; }
+  main { display: grid; grid-template-columns: 1fr 1fr; }
+  a.opt { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 8vh clamp(24px, 7vw, 96px); text-decoration: none; color: inherit; min-height: 100svh; }
+  a.opt:focus-visible { outline: 2px solid var(--gold); outline-offset: -8px; }
+  .k { font: 500 12px/1 "Archivo", sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--soft); }
+  h2 { margin: 0; font-weight: 500; letter-spacing: -.03em; line-height: .98; font-size: clamp(2.4rem, 5vw, 4.2rem); }
+  .a h2 { font-family: "Outfit", sans-serif; }
+  .b h2 { font-stretch: 112%; }
+  p { margin: 0; max-width: 36ch; color: var(--soft); }
+  .go { margin-top: 10px; font-weight: 500; text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+  a.opt.b { color: var(--cream); } .b .k, .b p { color: #b5a898; } .b .go { color: #d6b36d; }
+  .a .go { color: var(--gold); }
+  @media (hover: hover) { a.opt .go { transition: transform 200ms cubic-bezier(.23,1,.32,1); } a.opt:hover .go { transform: translateX(4px); } }
+  @media (max-width: 760px) { body { background: var(--bg); } main { grid-template-columns: 1fr; } a.opt { min-height: 50svh; } .b { background: var(--dark); } }
+</style>
+</head>
+<body>
+<main>
+  <a class="opt a" href="optie-a/">
+    <span class="k">Voorstel A</span>
+    <h2>Licht, in hoofdstukken</h2>
+    <p>Crème en goud. Een gouden rank groeit mee in de marge en eindigt in de lotus van het logo.</p>
+    <span class="go">Bekijk voorstel A →</span>
+  </a>
+  <a class="opt b" href="optie-b/">
+    <span class="k">Voorstel B</span>
+    <h2>Donker, als catalogus</h2>
+    <p>Elk werk een nummer en een kaartje. Elke foto begint als stencil en wordt ingekleurd terwijl je scrolt.</p>
+    <span class="go">Bekijk voorstel B →</span>
+  </a>
+</main>
+</body>
+</html>

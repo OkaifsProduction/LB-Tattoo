@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Laura Buekers Tattoo · Fijne lijnen, mooi gezet</title>
+<meta name="description" content="Laura Buekers Tattoo in Wellen: fijne lijnen, bloemen, persoonlijke tattoos, microblading en powder brows. 5,0 sterren op Google.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  :root {
+    --sc-canvas: #f8f2e8; --sc-surface: #efe4d2;
+    --sc-ink: #1c1815; --sc-ink-soft: #5a4e45;
+    --sc-accent: #a37d36; --sc-accent-ink: #1c1815;
+    --sc-font-display: "Outfit", system-ui, sans-serif;
+    --sc-font-text: "DM Sans", system-ui, sans-serif;
+    --vine: #a37d36;
+    --margin: 0px;
+  }
+  @media (min-width: 900px) { :root { --margin: 96px; } }
+  html { scroll-behavior: auto; }
+  body { margin: 0; }
+  a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+  a:focus-visible { outline: 2px solid var(--sc-accent); outline-offset: 4px; border-radius: 2px; }
+
+  /* Grounds: hard cuts, each restates its own ink */
+  .g-cream { background: #f8f2e8; --sc-ink: #1c1815; --sc-ink-soft: #5a4e45; --sc-accent: #a37d36; color: var(--sc-ink); }
+  .g-sand  { background: #efe4d2; --sc-ink: #1c1815; --sc-ink-soft: #55493f; --sc-accent: #8f6c28; color: var(--sc-ink); }
+  .g-blush { background: #f3d5de; --sc-ink: #1c1815; --sc-ink-soft: #55443f; --sc-accent: #8f6c28; color: var(--sc-ink); }
+  .g-ink   { background: #1c1815; --sc-ink: #f6efe4; --sc-ink-soft: #c2b6a8; --sc-accent: #dcb972; color: var(--sc-ink); }
+
+  .page { padding-left: var(--margin); }
+  .label { font: 500 var(--sc-t-xs)/1.2 var(--sc-font-display); letter-spacing: 0.18em; text-transform: uppercase; color: var(--sc-ink-soft); margin: 0 0 var(--sc-5); }
+  h1, h2, h3 { font-family: var(--sc-font-display); font-weight: 500; margin: 0; text-wrap: balance; }
+  h2 { font-size: var(--sc-t-3xl); line-height: var(--sc-leading-tight); letter-spacing: var(--sc-track-tight); }
+  .gold { color: var(--sc-accent); }
+
+  /* Vine (signature) */
+  .vine { position: fixed; left: 0; top: 0; width: var(--margin); height: 100svh; z-index: 50; pointer-events: none; display: none; }
+  @media (min-width: 900px) { .vine { display: block; } }
+  .vine svg { width: 100%; height: 100%; overflow: visible; }
+  .vine path { fill: none; stroke: var(--vine); stroke-width: 1.3; stroke-linecap: round; transition: stroke 300ms var(--sc-ease-out); }
+  .vine circle { fill: var(--vine); transition: fill 300ms var(--sc-ease-out); }
+
+  /* Folio */
+  /* Desktop: the folio lives in the paper margin, set vertically, so it never crosses the page. */
+  .folio { position: fixed; z-index: 60; display: flex; font: 500 var(--sc-t-xs)/1 var(--sc-font-display); letter-spacing: 0.16em; text-transform: uppercase; color: #1c1815; pointer-events: none; }
+  .folio a { pointer-events: auto; }
+  @media (min-width: 900px) {
+    .folio { left: 0; top: 0; bottom: 0; width: 34px; flex-direction: column-reverse; justify-content: space-between; align-items: center; padding: var(--sc-6) 0; }
+    .folio > * { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; }
+  }
+  /* Phone: no margin, so the folio is a small pill that carries its own ground. */
+  @media (max-width: 899px) {
+    .folio { top: 10px; left: 10px; right: 10px; justify-content: space-between; align-items: center; padding: 11px 16px; border-radius: 999px; background: rgb(248 242 232 / 0.94); box-shadow: 0 6px 18px rgb(28 24 21 / 0.08); transition: background 300ms var(--sc-ease-out), color 300ms var(--sc-ease-out); }
+    html[data-ground="ink"] .folio { background: rgb(28 24 21 / 0.92); color: #f6efe4; }
+  }
+
+  /* Title page */
+  .title { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 8rem var(--sc-gutter) 5rem; }
+  .title h1 { font-size: clamp(3.3rem, 10.5vw, 9.6rem); line-height: 0.94; letter-spacing: -0.045em; }
+  .title .sub { font-size: var(--sc-t-lg); line-height: 1.5; color: var(--sc-ink-soft); max-width: 34ch; margin: var(--sc-6) 0 var(--sc-7); }
+  .title .go { font: 500 var(--sc-t-base)/1 var(--sc-font-display); letter-spacing: 0.02em; }
+  .title .go span { display: inline-block; transition: transform var(--sc-d-base) var(--sc-ease-out); }
+  @media (hover: hover) and (pointer: fine) { .title .go:hover span { transform: translateX(4px); } }
+
+  /* Chapter I: rail */
+  .werk [data-sc-stage] { background: #1c1815; display: flex; align-items: center; }
+  .rail { padding-inline: var(--sc-gutter); gap: clamp(1.5rem, 3.5vw, 3.5rem); align-items: flex-end; }
+  .rail__lead { flex: 0 0 clamp(16rem, 28vw, 25rem); align-self: center; }
+  .rail__lead p:not(.label) { color: var(--sc-ink-soft); margin: var(--sc-5) 0 0; max-width: 30ch; }
+  .plate { flex: 0 0 auto; margin: 0; }
+  .plate img { display: block; height: clamp(18rem, 52vh, 31rem); width: auto; border-radius: 2px; }
+  .plate figcaption { margin-top: var(--sc-4); font: 400 var(--sc-t-sm)/1.4 var(--sc-font-text); color: var(--sc-ink-soft); }
+  .plate figcaption b { font: 500 var(--sc-t-sm)/1.4 var(--sc-font-display); color: var(--sc-ink); }
+  .plate:nth-of-type(even) { transform: translateY(-3.5vh); }
+  .rail__end { flex: 0 0 clamp(14rem, 22vw, 20rem); align-self: center; color: var(--sc-ink-soft); }
+
+  /* Chapter II */
+  .brows { padding: calc(var(--sc-section) * 0.9) var(--sc-gutter); }
+  .brows__grid { max-width: var(--sc-maxw); margin-inline: auto; display: grid; grid-template-columns: 5fr 4fr 5fr; gap: clamp(1.5rem, 4vw, 4.5rem); align-items: start; }
+  .brows__text { padding-top: 6vh; }
+  .brows__text p:not(.label) { color: var(--sc-ink-soft); margin: var(--sc-5) 0 0; max-width: 34ch; }
+  .brows__a img, .brows__b img { display: block; width: 100%; height: auto; border-radius: 2px; }
+  .brows__b { margin-top: 14vh; }
+  @media (max-width: 899px) { .brows__grid { grid-template-columns: 1fr 1fr; } .brows__text { grid-column: 1 / -1; padding-top: 0; order: -1; } .brows__b { margin-top: 8vh; } }
+
+  /* Chapter III */
+  .laura { padding: calc(var(--sc-section) * 0.9) var(--sc-gutter); }
+  .laura__grid { max-width: var(--sc-maxw); margin-inline: auto; display: grid; grid-template-columns: 6fr 5fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .laura figure { margin: 0; }
+  .laura img { display: block; width: 100%; height: auto; border-radius: 2px; }
+  .laura figcaption { margin-top: var(--sc-4); font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
+  .laura blockquote { margin: var(--sc-6) 0 0; font: 500 var(--sc-t-2xl)/1.12 var(--sc-font-display); letter-spacing: var(--sc-track-snug); text-wrap: balance; }
+  .laura blockquote cite { display: block; margin-top: var(--sc-4); font: 400 var(--sc-t-sm)/1.4 var(--sc-font-text); font-style: normal; color: var(--sc-ink-soft); letter-spacing: 0; }
+  .laura p.body { color: var(--sc-ink-soft); margin: var(--sc-6) 0 0; max-width: 40ch; }
+  @media (max-width: 899px) { .laura__grid { grid-template-columns: 1fr; } }
+
+  /* Chapter IV */
+  .reviews { padding: var(--sc-section) var(--sc-gutter); }
+  .reviews__in { max-width: var(--sc-maxw); margin-inline: auto; }
+  .reviews__head { display: flex; justify-content: space-between; align-items: end; gap: var(--sc-6); flex-wrap: wrap; margin-bottom: var(--sc-9); }
+  .score { display: flex; align-items: baseline; gap: var(--sc-4); font-family: var(--sc-font-display); }
+  .score strong { font-size: var(--sc-t-4xl); font-weight: 500; line-height: 0.9; letter-spacing: -0.04em; color: var(--sc-accent); font-variant-numeric: tabular-nums; }
+  .score span.t { color: var(--sc-ink-soft); font: 400 var(--sc-t-sm)/1.4 var(--sc-font-text); }
+  .score span.t b { color: var(--sc-ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .quotes { columns: 2; column-gap: clamp(2rem, 7vw, 7rem); }
+  .quote { break-inside: avoid; margin: 0 0 var(--sc-8); }
+  .quote blockquote { margin: 0; font: 500 var(--sc-t-xl)/1.22 var(--sc-font-display); letter-spacing: var(--sc-track-snug); text-wrap: pretty; }
+  .quote--small blockquote { font-size: var(--sc-t-lg); font-weight: 400; line-height: 1.35; }
+  .quote cite { display: block; margin-top: var(--sc-4); font: 500 var(--sc-t-sm)/1.4 var(--sc-font-display); font-style: normal; }
+  .quote cite small { font: 400 var(--sc-t-sm)/1.4 var(--sc-font-text); color: var(--sc-ink-soft); }
+  .quote .reply { margin: var(--sc-3) 0 0; font-size: var(--sc-t-sm); font-style: italic; color: var(--sc-ink-soft); }
+  .source { color: var(--sc-ink-soft); font-size: var(--sc-t-xs); margin: 0; }
+  @media (max-width: 899px) { .quotes { columns: 1; } }
+
+  /* Silence */
+  .silence { min-height: 85svh; display: grid; place-items: center; padding: var(--sc-9) var(--sc-gutter); }
+  .silence p { font: 500 var(--sc-t-3xl)/1.02 var(--sc-font-display); letter-spacing: var(--sc-track-tight); margin: 0; max-width: 14ch; }
+
+  /* Colophon (the peak) */
+  .close { background: #f8f2e8; --sc-ink: #1c1815; --sc-ink-soft: #5a4e45; --sc-accent: #a37d36; color: var(--sc-ink); }
+  .plate-draw { position: absolute; inset: 0 0 clamp(11rem, 30vh, 17rem) 0; display: grid; place-items: center; padding-left: var(--margin); }
+  .plate-draw__box { position: relative; width: min(30rem, 78vw, 46vh); aspect-ratio: 1; }
+  .plate-draw svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; opacity: calc(1 - clamp(0, (var(--sc-p, 0) - 0.80) / 0.12, 1)); }
+  .lp { fill: #f8f2e8; stroke: #a37d36; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - clamp(0, (var(--sc-p, 0) - var(--s)) / var(--l), 1)); }
+  .plate-draw img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: clamp(0, calc((var(--sc-p, 0) - 0.80) / 0.12), 1); }
+  .colophon { position: absolute; left: var(--margin); right: 0; bottom: clamp(1.5rem, 5vh, 3rem); padding-inline: var(--sc-gutter); display: grid; gap: var(--sc-3); justify-items: center; text-align: center; }
+  .colophon p { margin: 0; }
+  .colophon .line { font: 400 var(--sc-t-lg)/1.45 var(--sc-font-text); max-width: 40ch; }
+  .colophon .small { font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
+  .colophon .fine { font-size: var(--sc-t-xs); color: var(--sc-ink-soft); margin-top: var(--sc-4); }
+
+  @media (prefers-reduced-motion: reduce) { .lp { stroke-dashoffset: 0; } .plate-draw svg { opacity: 0; } .plate-draw img { opacity: 1; } }
+</style>
+</head>
+<body>
+
+<div class="vine" aria-hidden="true"><svg viewBox="0 0 96 1000" preserveAspectRatio="xMidYMid meet"><path id="stem" d="M64 0 C 52 90, 76 170, 64 260 S 52 430, 64 520 S 76 690, 64 780 S 55 930, 64 1000"/><g id="leaves"></g><circle id="tip" r="3" cx="64" cy="0"/></svg></div>
+
+<div class="folio">
+  <span id="chapter">Laura Buekers Tattoo</span>
+  <a href="#afspraak">Afspraak maken</a>
+</div>
+
+<main class="page" id="top">
+
+  <!-- Titelblad -->
+  <section class="title g-cream" data-chapter="Laura Buekers Tattoo" data-ground="cream">
+    <div data-sc-in data-sc-stagger="80">
+      <p class="label">Tattoo studio in Wellen</p>
+      <h1>Fijne lijnen.<br><span class="gold">Mooi</span> gezet.</h1>
+      <p class="sub">Bloemen, botanische ontwerpen en persoonlijke tattoos met oog voor detail. Ook microblading en powder brows.</p>
+      <a class="go" href="#afspraak">Afspraak maken <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- I. Werk -->
+  <section class="werk" data-sc-act="pan" data-sc-span="3.2" data-chapter="I · Werk" data-ground="ink">
+    <div data-sc-stage class="g-ink">
+      <div class="rail" data-sc-pan="0.06">
+        <div class="rail__lead">
+          <p class="label">Hoofdstuk I</p>
+          <h2>Werk</h2>
+          <p>Zwart-grijs, fijne lijnen, bloemen en kleine verhalen op de huid.</p>
+        </div>
+        <figure class="plate"><img src="assets/work-1.jpg" width="1100" height="1100" alt="Sleeve met een vos, bloemen en vlinders"><figcaption><b>Fox, bloemen en vlinders.</b> Arm.</figcaption></figure>
+        <figure class="plate"><img src="assets/work-2.jpg" width="1100" height="1100" alt="Fijn getekend boeket van bloemen"><figcaption><b>Boeket.</b> Arm.</figcaption></figure>
+        <figure class="plate"><img src="assets/work-3.jpg" width="1100" height="1100" alt="Zwart-grijs portret van een vader en zoon met twee vuisten"><figcaption><b>Vader en zoon.</b> Schouderblad.</figcaption></figure>
+        <figure class="plate"><img src="assets/work-4.jpg" width="1100" height="1100" alt="Lelie met een rank langs de bovenarm"><figcaption><b>Lelie met rank.</b> Bovenarm.</figcaption></figure>
+        <figure class="plate"><img src="assets/work-5.jpg" width="1100" height="1100" alt="Halve maan met een gezicht"><figcaption><b>Maan met gezicht.</b> Bovenarm.</figcaption></figure>
+        <figure class="plate"><img src="assets/work-6.jpg" width="1100" height="1100" alt="Infinity-teken met bloemen op de onderarm"><figcaption><b>Infinity met bloemen.</b> Onderarm.</figcaption></figure>
+        <figure class="plate"><img src="assets/work-7.jpg" width="1100" height="1100" alt="Grote fijne lelies langs de arm"><figcaption><b>Lelies.</b> Arm.</figcaption></figure>
+        <figure class="plate"><img src="assets/work-8.jpg" width="1100" height="1379" alt="Fijne tekst langs de wervelkolom"><figcaption><b>Tekst langs de rug.</b> Rug.</figcaption></figure>
+        <div class="rail__end"><p>Een greep uit het werk.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- II. Wenkbrauwen -->
+  <section class="brows g-sand" data-sc-act="flow" data-chapter="II · Wenkbrauwen" data-ground="sand">
+    <div class="brows__grid">
+      <div class="brows__a" data-sc-parallax="-0.9"><img src="assets/brows-1.jpg" width="1100" height="1100" loading="lazy" alt="Wenkbrauwen tijdens een behandeling"></div>
+      <div class="brows__text" data-sc-in data-sc-stagger="70">
+        <p class="label">Hoofdstuk II</p>
+        <h2>Ook wenkbrauwen</h2>
+        <p>Naast tattoos doet Laura microblading en powder brows. Dezelfde rust, dezelfde precisie.</p>
+      </div>
+      <div class="brows__b" data-sc-parallax="0.7"><img src="assets/brows-2.jpg" width="1100" height="1100" loading="lazy" alt="Wenkbrauwen na een behandeling"></div>
+    </div>
+  </section>
+
+  <!-- III. Laura -->
+  <section class="laura g-blush" data-sc-act="flow" data-chapter="III · Laura" data-ground="blush">
+    <div class="laura__grid">
+      <figure data-sc-reveal="up" data-sc-reveal-at="0.08 0.5">
+        <img src="assets/laura-studio.jpg" width="1300" height="1300" loading="lazy" alt="Laura Buekers in haar studio, voor de gouden luipaardmuur">
+        <figcaption>Laura in haar studio.</figcaption>
+      </figure>
+      <div data-sc-in data-sc-stagger="80">
+        <p class="label">Hoofdstuk III</p>
+        <h2>Laura</h2>
+        <blockquote>“Vriendelijk, zorgzaam en professioneel.”<cite>Davy Daniels, Google review</cite></blockquote>
+        <p class="body">Klanten schrijven dat ze proper werkt, de tijd neemt voor je wensen en je meteen op je gemak stelt. Veel mensen komen terug voor hun volgende tattoo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV. Reviews -->
+  <section class="reviews g-ink" data-chapter="IV · Reviews" data-ground="ink">
+    <div class="reviews__in">
+      <div class="reviews__head" data-sc-in data-sc-stagger="70">
+        <div><p class="label">Hoofdstuk IV</p><h2>Wat klanten zeggen</h2></div>
+        <div class="score"><strong>5,0</strong><span class="t"><b data-sc-count="0 21">0</b> reviews op Google</span></div>
+      </div>
+      <div class="quotes" data-sc-in data-sc-stagger="90">
+        <figure class="quote"><blockquote>“Voor mij heeft ze een heel bijzondere tattoo gezet: het voetafdrukje van ons zoontje. Zoiets persoonlijks vraagt om iemand die met zorg, precisie en respect werkt, en dat heeft ze meer dan bewezen.”</blockquote><figcaption><cite>Yana Ongenaden <small>6 maanden geleden</small></cite><p class="reply">Laura: “Super lief Yana merci!! Altijd gezellig.”</p></figcaption></figure>
+        <figure class="quote quote--small"><blockquote>“Al mijn tattoos zijn prachtig gezet met fijne, strakke lijnen. Mijn vingertattoos houden ook enorm goed, ondanks dat ik kapster ben en met de handen in het water zit.”</blockquote><figcaption><cite>Anne Hindrikx <small>6 maanden geleden</small></cite><p class="reply">Laura: “Dankjewel Anne!”</p></figcaption></figure>
+        <figure class="quote quote--small"><blockquote>“Ze nam de tijd om mijn ideeën te bespreken en kwam met een ontwerp dat precies aansloot bij wat ik in gedachten had. De details en schaduwen zijn prachtig uitgewerkt, en de lijnen zijn strak en precies.”</blockquote><figcaption><cite>Axel Bollen <small>een jaar geleden</small></cite><p class="reply">Laura: “Dankjewel Axel!”</p></figcaption></figure>
+        <figure class="quote"><blockquote>“Deze prachtige meid heeft mijn patchwork sleeve getatoeëerd, die trouwens nog niet af is, want ik blijf lege plekjes zien om op te vullen met Laura haar prachtig tattoowerk.”</blockquote><figcaption><cite>Femke Iliaens <small>6 maanden geleden</small></cite><p class="reply">Laura: “Dankjewel Femke! Ik kijk al uit naar onze volgende afspraak!”</p></figcaption></figure>
+        <figure class="quote quote--small"><blockquote>“Echt een top tattoo artist! Zeer tevreden van mijn tattoo. Super strakke lijnen, topdetails, alles samengevat: topwerk.”</blockquote><figcaption><cite>Remy Gucciardi <small>een jaar geleden</small></cite><p class="reply">Laura: “Dankjewel Remy!”</p></figcaption></figure>
+      </div>
+      <p class="source">Reviews afkomstig van Google.</p>
+    </div>
+  </section>
+
+  <!-- Stilte -->
+  <section class="silence g-cream" data-chapter="Laura Buekers Tattoo" data-ground="cream">
+    <p data-sc-in>Eén lijn tegelijk.</p>
+  </section>
+
+  <!-- Colofon: het hoogtepunt -->
+  <section id="afspraak" data-sc-act="pin" data-sc-span="4.2" data-chapter="V · Contact" data-ground="cream">
+    <div data-sc-stage class="close">
+      <div class="plate-draw" aria-hidden="true"><div class="plate-draw__box">
+        <svg viewBox="0 0 400 360">
+        <path class="lp" pathLength="1" style="--s:0.020;--l:0.16" d="M200.0 300.0 C162.6 260.4 68.9 255.8 31.7 276.3 C61.8 306.3 153.2 327.8 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.055;--l:0.16" d="M200.0 300.0 C246.8 327.8 338.2 306.3 368.3 276.3 C331.1 255.8 237.4 260.4 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.090;--l:0.16" d="M200.0 300.0 C184.7 247.8 103.2 201.1 60.7 202.5 C74.0 242.9 145.7 303.5 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.125;--l:0.16" d="M200.0 300.0 C254.3 303.5 326.0 242.9 339.3 202.5 C296.8 201.1 215.3 247.8 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.160;--l:0.16" d="M200.0 300.0 C210.1 246.5 158.7 167.9 120.2 149.9 C113.6 191.9 150.0 278.4 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.195;--l:0.16" d="M200.0 300.0 C250.0 278.4 286.4 191.9 279.8 149.9 C241.3 167.9 189.9 246.5 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.230;--l:0.16" d="M200.0 300.0 C234.0 257.5 225.5 164.0 200.0 130.0 C174.5 164.0 166.0 257.5 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.300;--l:0.16" d="M200.0 300.0 C184.4 256.8 115.6 232.1 81.4 242.1 C94.6 275.3 156.3 314.3 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.335;--l:0.16" d="M200.0 300.0 C243.7 314.3 305.4 275.3 318.6 242.1 C284.4 232.1 215.6 256.8 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.370;--l:0.16" d="M200.0 300.0 C209.7 255.1 164.4 197.7 130.1 188.1 C123.7 223.2 155.4 289.0 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.405;--l:0.16" d="M200.0 300.0 C244.6 289.0 276.3 223.2 269.9 188.1 C235.6 197.7 190.3 255.1 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.440;--l:0.16" d="M200.0 300.0 C232.0 267.0 224.0 194.4 200.0 168.0 C176.0 194.4 168.0 267.0 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.550;--l:0.16" d="M200.0 300.0 C206.3 265.9 170.1 230.0 143.4 227.5 C139.3 254.0 165.4 297.9 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.585;--l:0.16" d="M200.0 300.0 C234.6 297.9 260.7 254.0 256.6 227.5 C229.9 230.0 193.7 265.9 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:0.620;--l:0.16" d="M200.0 300.0 C226.0 277.0 219.5 226.4 200.0 208.0 C180.5 226.4 174.0 277.0 200.0 300.0Z"/>
+        <path class="lp" pathLength="1" style="--s:.62;--l:.2" d="M60 304 C110 292 150 316 200 304 S290 292 340 304"/><path class="lp" pathLength="1" style="--s:.68;--l:.2" d="M95 322 C135 312 165 332 200 322 S265 312 305 322"/>
+        </svg>
+        <img src="assets/logo.png" width="800" height="800" alt="">
+      </div></div>
+      <div class="colophon" data-sc-cue="0.72">
+        <p class="line">Een afspraak maken? Mail Laura met je idee, de plaats op je lichaam en wat voorbeelden.</p>
+        <p class="line"><a href="mailto:laurabuekerstattoo@gmail.com?subject=Afspraak%20tattoo">laurabuekerstattoo@gmail.com</a></p>
+        <p class="small">Bloemenstraat 22, 3830 Wellen · <a href="https://www.google.com/maps/search/?api=1&amp;query=Laura+Buekers+Tattoo+Bloemenstraat+22+3830+Wellen" target="_blank" rel="noopener">Route plannen</a></p>
+        <p class="fine">© 2026 Laura Buekers Tattoo</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+ScrollCraft.mount(document.body);
+
+(function () {
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stem = document.getElementById('stem'), leaves = document.getElementById('leaves'), tip = document.getElementById('tip');
+  if (!stem || !stem.getTotalLength) return;
+  var L = stem.getTotalLength();
+  var fr = [0.07, 0.16, 0.25, 0.34, 0.43, 0.52, 0.61, 0.70, 0.79, 0.88];
+  var ns = 'http://www.w3.org/2000/svg', items = [];
+  fr.forEach(function (f, i) {
+    var a = stem.getPointAtLength(f * L), b = stem.getPointAtLength(Math.min(L, f * L + 4));
+    var tx = b.x - a.x, ty = b.y - a.y, m = Math.hypot(tx, ty) || 1; tx /= m; ty /= m;
+    var side = i % 2 ? -1 : 1, nx = -ty * side, ny = tx * side;
+    var tipx = a.x + nx * 20 + tx * 14, tipy = a.y + ny * 20 + ty * 14;
+    var c1x = a.x + nx * 14 - tx * 2, c1y = a.y + ny * 14 - ty * 2;
+    var c2x = a.x + nx * 5 + tx * 12, c2y = a.y + ny * 5 + ty * 12;
+    var p = document.createElementNS(ns, 'path');
+    p.setAttribute('d', 'M' + a.x + ' ' + a.y + ' Q' + c1x + ' ' + c1y + ' ' + tipx + ' ' + tipy + ' Q' + c2x + ' ' + c2y + ' ' + a.x + ' ' + a.y);
+    leaves.appendChild(p);
+    var len = p.getTotalLength(); p.style.strokeDasharray = len;
+    items.push({ p: p, len: len, f: f });
+  });
+  stem.style.strokeDasharray = L;
+  function draw() {
+    var h = document.documentElement.scrollHeight - innerHeight;
+    // a short sprout is already there on landing, so the margin is never empty
+    var P = reduced ? 1 : 0.04 + 0.96 * (h > 0 ? Math.min(1, Math.max(0, scrollY / h)) : 0);
+    stem.style.strokeDashoffset = L * (1 - P);
+    items.forEach(function (it) {
+      var k = Math.min(1, Math.max(0, (P - it.f) / 0.05));
+      it.p.style.strokeDashoffset = it.len * (1 - k);
+    });
+    var pt = stem.getPointAtLength(P * L);
+    tip.setAttribute('cx', pt.x); tip.setAttribute('cy', pt.y);
+    tip.style.opacity = P > 0.985 ? 0 : 1;
+  }
+  var tick = false;
+  addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(function () { tick = false; draw(); }); } }, { passive: true });
+  addEventListener('resize', draw); draw();
+
+  // "Afspraak maken" jumps straight to the finished colophon instead of gliding through the page
+  document.querySelectorAll('a[href="#afspraak"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var s = document.getElementById('afspraak'); if (!s) return;
+      e.preventDefault();
+      var top = s.getBoundingClientRect().top + scrollY;
+      window.scrollTo({ top: top + s.offsetHeight - innerHeight, behavior: 'instant' });
+    });
+  });
+
+  // folio: chapter name and ground follow the section in the middle of the viewport
+  var chapter = document.getElementById('chapter'), root = document.documentElement;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      chapter.textContent = e.target.dataset.chapter || '';
+      root.dataset.ground = e.target.dataset.ground || 'cream';
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('[data-chapter]').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>
